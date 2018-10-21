@@ -1,0 +1,5 @@
+cp "localizacao do ficheiro" . # . significa pasta onde estas  (pwd)
+
+git add "nome do ficheiro"
+git commit -m "mensagem a adicionar depois do trabalho feito"
+git push #utilizar isto para enviar para a nuvem, saber que é preciso um commit antes do git push
