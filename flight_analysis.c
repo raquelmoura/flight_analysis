@@ -19,6 +19,7 @@ char* nome_parametros[14] = {"tempo final da simulacao","passo de integracao dt"
 
 int main ()
 {
+	system("clear");
 	printf("\n");
 	int opcao;
 	menu(&opcao, MENU_PRINCIPAL, tamanho_menu_principal, 0);
@@ -41,11 +42,20 @@ int main ()
 	if (opcao == 4)
 	{
 		float parametros[14];
-		ler_ficheiro(parametros,nome_parametros);
-		printParametros(parametros, nome_parametros);
+		if(!(ler_ficheiro(parametros,nome_parametros))){
+			printParametros(parametros, nome_parametros);
+			printf("\nDo you wanna go back to menu? y/n\n");
+			scanf("%c",(char *) &opcao);
+			if(opcao == 'y'){
+				main();
+				return 0;
+			}
+		} 
 	}
 
 	printf("---------------\nFim do programa\n---------------\n");
+	printf("\nPress Enter to close program\n");
+	getchar();
 	return 0;
 }
 
@@ -68,26 +78,27 @@ void writeMenu(char* MENU[], int tamanho, int start)
 
 
 void menu (int* op, char* MENU[], int tamanho, int start){
-	system("@cls||clear");
 	writeMenu(MENU, tamanho,start);
 	printf ("\nSeleciona opcao:\n");
 
 	scanf("%d", op);
-	printf("\n");
+	getchar();
 	int opcao = *op;
 	fflush (stdin); /* Limpar o buffer do teclado */
 
-	if(opcao < start || opcao >= tamanho+start){
+	if(*op < start || opcao >= tamanho+start-1){
+		system("clear");
 		printf ("---\nOpcao invalida! Por favor escolha de novo\n---\n");
 		menu(op, MENU, tamanho, start);
 	}
 
-	if(opcao == 3)
+	if(*op == 3)
 	{
+		system("clear");
 		menu(op,OUTRAS_OPCOES, tamanho_outras_opcoes, tamanho-1);
 		if(*op == 5) menu(op, MENU, tamanho, start);
 	}
-	system("@cls||clear");
+	system("clear");
 }
 
 int ler_ficheiro(float parametros[], char* name[]){
@@ -96,6 +107,7 @@ int ler_ficheiro(float parametros[], char* name[]){
 
 	if (!fp1)
 	{
+		system("clear");
 		printf("---\nnão foi possivel abrir o ficheiro\n---\n");
 		return 1;
 	}
@@ -115,6 +127,7 @@ int ler_ficheiro(float parametros[], char* name[]){
 			}
 			else
 			{
+				system("clear");
 				printf("---\nvalor de \"%s\" em falta\n---\n", name[i]);
 				return 1;
 			}
