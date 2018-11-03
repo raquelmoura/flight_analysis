@@ -1,10 +1,10 @@
-CFLAGS=-std=c99 -Wall -pedantic
-FICHEIROS=flight_analysis.c flight_analysis.h menus_options.c menus_options.h config_model.txt tf_prog2018_19_intermedio.pdf Makefile 
+CFLAGS=-std=c99 -Wall -pedantic -lm
+FICHEIROS=flight_analysis.c flight_analysis.h menus_options.c menus_options.h calculo.c calculo.h config_model.txt tf_prog2018_19_intermedio.pdf Makefile 
 EXECUTAVEL=flight_analysis
 COMMANDS = zip gcc
 
-$(EXECUTAVEL): flight_analysis.o menus_options.o Makefile
-	gcc -o $(EXECUTAVEL) flight_analysis.o menus_options.o
+$(EXECUTAVEL): flight_analysis.o menus_options.o calculo.o Makefile
+	gcc -o $(EXECUTAVEL) flight_analysis.o menus_options.o calculo.o -lm
 
 install:
 	sudo apt install $(COMMANDS)
@@ -20,4 +20,5 @@ clean:
 	rm -rf *.o $(EXECUTAVEL) Doxyfile latex html install
 
 flight_analysis.o: flight_analysis.c flight_analysis.h menus_options.h
-menus_options.o: menus_options.c flight_analysis.h menus_options.h
+menus_options.o: menus_options.c flight_analysis.h menus_options.h calculo.h calculo.o
+calculo.o: calculo.c calculo.h

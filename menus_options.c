@@ -1,5 +1,6 @@
 #include "flight_analysis.h"
 #include "menus_options.h"
+#include "calculo.h"
 
 char *MENU_PRINCIPAL[] = {"MENU_PRINCIPAL","Terminar o programa","Simular o movimento da aeronave","Vizualizar resultados graficos","Outras Opcoes"};
 int tamanho_menu_principal = 5;
@@ -11,11 +12,16 @@ char* nome_parametros[14] = {"tempo final da simulacao","passo de integracao dt"
 int run_menu(int opcao, int menu_number){
 	if(menu_number == 1)
 	{
+		if(opcao == 0)
+		{
+			return 0;
+		}
 		if (opcao == 1)
 		{ 
 			/* Ficheiros e dados a adicionar, constantes dadas, funçoes para as variavei do voo */
-			float parametros[14];
+			double parametros[14];
 			ler_ficheiro(parametros,nome_parametros);
+			create_file(parametros);
 		}
 
 		if (opcao == 2)
@@ -29,22 +35,33 @@ int run_menu(int opcao, int menu_number){
 			menu(menu_number+1);
 			return 0;
 		}
+
+		printf("Press Enter to go back to menu\n");
+		getchar();
+		system("clear");
+
+		menu(menu_number);
+		return 0;
 	}
 	
 	if(menu_number == 2)
 	{
 		if (opcao == 0)
 		{ 
-			float parametros[14];
+			double parametros[14];
 			if(!(ler_ficheiro(parametros,nome_parametros))){
 				printParametros(parametros, nome_parametros);
-				printf("\nDo you wanna go back to menu? y/n\n");
-				scanf("%c",(char *) &opcao);
-				if(opcao == 'y'){
-					menu(menu_number-1);
-					return 0;
-				}
-			}	
+			}
+
+			printf("Press Enter to go back to menu\n");
+			getchar();
+			system("clear");
+
+			menu(menu_number);
+		}
+		if (opcao == 1)
+		{
+			menu(menu_number-1);
 		}
 	}
 

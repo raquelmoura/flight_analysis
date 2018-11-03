@@ -7,9 +7,9 @@
 #include <math.h>
 
 
-int ler_ficheiro(float parametros[], char* name[]);
+int ler_ficheiro(double parametros[], char* name[]);
 
-void printParametros (float parametros[], char* nome_parametros[]);
+void printParametros (double parametros[], char* nome_parametros[]);
 
 
 #endif
