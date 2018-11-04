@@ -8,11 +8,13 @@ void create_file (double parametros[])
 	double CL = cl(parametros);
 	double epslon1 = epslon(parametros, AR);
 	double CD = cd(parametros, epslon1, CL);
+	
 
-	double buff, lift, drag;
+	double lift, drag;
 
 	double gamma = parametros[GAMMAi];
 	double gamma1 = gamma;
+	
 	double V = parametros[Vi];
 	double V1 = V;
 	double H = parametros[Hi];
@@ -29,9 +31,8 @@ void create_file (double parametros[])
 	for(t=0; t <= parametros[TF] && H >= 0;t=t+dt)
 	{
 		printf("%f %f %f %f %f\n",t,V,gamma,X,H);
-		buff = parametros[RHO] * pow(V, 2) * parametros[S] * (1/2);
-		lift = CL * buff;
-		drag = CD * buff;
+		lift = ((parametros[RHO] * V * V * parametros[S]) / 2) * CL;
+		drag = ((parametros[RHO] * V * V * parametros[S]) / 2) * CD;
 
 		gamma = gamma + (lift - m * g * cos(gamma))*dt/(m*V);
 		V = V +((-drag-m*g*sin(gamma1)) * dt / m);
@@ -52,7 +53,7 @@ double cd (double parametros[], double epslon1, double cl1)
 double cl (double parametros[])
 {
 	double n_ar = ar(parametros);
-	return ( ( parametros[ALPHA] * PI * n_ar) / ( 1 + sqrt( 1 + pow((n_ar/2), 2) ) ) );
+	return ( ( parametros[ALPHA] * PI * n_ar) / ( 1 + sqrt( 1 + ((n_ar * n_ar) / 4) ) ) );
 }
 
 double epslon (double parametros[], double ar1)
@@ -62,5 +63,5 @@ double epslon (double parametros[], double ar1)
 
 double ar (double parametros[])
 {
-	return ( ( pow(parametros[B],(double) 2) ) / parametros[S] );
+	return ( ( parametros[B] * parametros[B] ) / parametros[S] );
 }
