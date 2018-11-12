@@ -4,7 +4,7 @@ EXECUTAVEL=flight_analysis
 COMMANDS = zip gcc
 
 $(EXECUTAVEL): flight_analysis.o menus_options.o calculo.o Makefile
-	gcc -o $(EXECUTAVEL) flight_analysis.o menus_options.o calculo.o -lm
+	gcc -o $(EXECUTAVEL) flight_analysis.o menus_options.o calculo.o -lm -lSDL2 -lSDL2_image
 
 install:
 	sudo apt install $(COMMANDS)
