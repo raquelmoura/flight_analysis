@@ -1,5 +1,5 @@
 CFLAGS=-std=c99 -Wall -pedantic
-FICHEIROS=flight_analysis.c flight_analysis.h menus_options.c menus_options.h calculo.c calculo.h config_model.txt tf_prog2018_19_intermedio.pdf Makefile 
+FICHEIROS=flight_analysis.c flight_analysis.h menus_options.c menus_options.h calculo.c calculo.h config_model.txt Makefile 
 EXECUTAVEL=flight_analysis
 COMMANDS = zip gcc
 
