@@ -39,6 +39,7 @@ void create_file (double parametros[])
 
 	for(t=0; t <= parametros[TF] && H >= 0;t=t+dt)
 	{
+		printf("%f %f %f %f %f\n",t,V,gamma,X,H);
 		fprintf(fp,"%f %f %f %f %f\n",t,V,gamma,X,H);
 		lift = ((parametros[RHO] * V * V * parametros[S]) / 2) * CL;
 		drag = ((parametros[RHO] * V * V * parametros[S]) / 2) * CD;
