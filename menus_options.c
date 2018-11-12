@@ -32,11 +32,12 @@ int run_menu(int opcao, int menu_number){
 			printf("---------------------------------------------------------\n");
 			scanf("%s", nome);
 			fflush(stdin);
-			double max_min1[2][3]={{0,2000,0},{0,2000,0}};
-			double varia[5];
-			max_min(varia,max_min1,nome);
-			grafico(max_min1,varia,nome);
-			getchar();
+			// double max_min1[2][3]={{0,2000,0},{0,2000,0}};
+			// double varia[5];
+			//depois adicionar
+			// max_min(varia,max_min1,nome);
+			// grafico(max_min1,varia,nome);
+			// getchar();
 			/* escolher o tipo de grafico, fazer o grafico, biblioteca grafica lsd2 */
 		}
 
